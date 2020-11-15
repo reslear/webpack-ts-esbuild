@@ -1,11 +1,11 @@
 {
-  "name": "mapgl",
+  "name": "webpack-ts-esbuild",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve"
   },
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/webpack-dev-server": "3.11.0",
+    "cross-env": "^7.0.2",
     "esbuild-loader": "2.4.0",
     "html-webpack-plugin": "5.0.0-alpha.7",
     "ts-node": "9.0.0",

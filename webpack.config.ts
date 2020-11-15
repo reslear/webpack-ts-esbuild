@@ -6,15 +6,18 @@ import { ESBuildPlugin, ESBuildMinifyPlugin } from "esbuild-loader";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-const { env } = process;
+const isDev = process.env.NODE_ENV === "development";
 
 const config: webpack.Configuration = {
-  mode: env.production ? "production" : "development",
-  devtool: env.production ? "inline-source-map" : "eval",
+  mode: isDev ? "development" : "production",
+  devtool: isDev ? "eval" : false,
   entry: "./src/index.ts",
   devServer: {
-    contentBase: "./dist",
+    publicPath: "/",
+    contentBase: "./static",
     hot: true,
+    stats: "errors-only",
+    disableHostCheck: true,
   },
   module: {
     rules: [
@@ -36,6 +39,11 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       title: "Output Management",
       template: "src/index.html",
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: false,
+      },
     }),
   ],
   optimization: {
@@ -50,6 +58,9 @@ const config: webpack.Configuration = {
   output: {
     filename: "index_bundle.js",
     path: __dirname + "/dist",
+  },
+  resolve: {
+    extensions: [".js", ".ts"],
   },
 };
 
