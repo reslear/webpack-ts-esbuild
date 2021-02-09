@@ -15,7 +15,7 @@
     "@types/webpack-dev-server": "3.11.1",
     "cross-env": "7.0.2",
     "esbuild-loader": "2.4.0",
-    "html-webpack-plugin": "5.0.0-alpha.7",
+    "html-webpack-plugin": "5.0.0",
     "ts-node": "9.0.0",
     "typescript": "4.0.5",
     "webpack-cli": "4.1.0",
